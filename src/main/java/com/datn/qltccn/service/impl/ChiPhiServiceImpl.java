@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,6 +24,7 @@ public class ChiPhiServiceImpl implements ChiPhiService {
 
     @Override
     public void add(Chiphi chiphi) {
+        chiphi.setNgaytao(new Date().toString());
         chiphiRepository.save(chiphi);
     }
 
