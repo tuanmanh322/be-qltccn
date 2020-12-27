@@ -31,7 +31,6 @@ public class ChiPhiServiceImpl implements ChiPhiService {
 
     @Override
     public void add(Chiphi chiphi) {
-        chiphi.setNgaytao(LocalDateTime.now());
         chiphiRepository.save(chiphi);
     }
 
@@ -54,7 +53,7 @@ public class ChiPhiServiceImpl implements ChiPhiService {
     public void edit(Chiphi chiphi) {
         Chiphi cp = chiphiRepository.getOne(chiphi.getId());
         cp.setLoaitien(chiphi.getLoaitien());
-        cp.setNgaytao(LocalDateTime.now());
+        cp.setNgaytao(chiphi.getNgaytao());
         cp.setMota(chiphi.getMota());
         cp.setSotien(chiphi.getSotien());
         cp.setIdLoaiNganSach(chiphi.getIdLoaiNganSach());
