@@ -25,6 +25,11 @@ public class ChiPhiController {
         return new ResponseEntity<>(chiPhiService.getAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/month/{mon}")
+    public ResponseEntity<List<Integer>> getAllByMonth(@PathVariable("mon") int month){
+        return new ResponseEntity<>(chiPhiService.getListByMonth(month), HttpStatus.OK);
+    }
+
     @GetMapping("/detail/{id}")
     public ResponseEntity<Chiphi> getById(@PathVariable("id")Integer id){
         return new ResponseEntity<>(chiPhiService.getById(id), HttpStatus.OK);

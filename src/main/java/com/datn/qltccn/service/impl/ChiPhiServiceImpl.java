@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -63,5 +64,21 @@ public class ChiPhiServiceImpl implements ChiPhiService {
     @Override
     public void search(ChiPhiSearchDTO dto) {
         chiPhiDAO.searchChiPhi(dto, SecurityUtils.getCurrentUserIdLogin());
+    }
+
+    @Override
+    public List<Integer> getListByMonth(int month) {
+        List<Integer> data = new ArrayList<>();
+        for (int i = 1; i<=12; i++){
+            int total = 0;
+          List<Chiphi> chiphis=   chiphiRepository.getListByMonth(i);
+          if (!chiphis.isEmpty()){
+                for (Chiphi cp: chiphis){
+                    total = total + Integer.parseInt(cp.getSotien());
+                }
+              data.add(total);
+          }
+        }
+        return data;
     }
 }
