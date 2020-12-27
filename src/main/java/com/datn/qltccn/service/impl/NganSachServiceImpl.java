@@ -1,7 +1,10 @@
 package com.datn.qltccn.service.impl;
 
+import com.datn.qltccn.dao.NganSachDAO;
+import com.datn.qltccn.dto.NganSachSearchDTO;
 import com.datn.qltccn.model.Ngansach;
 import com.datn.qltccn.repository.NgansachRepository;
+import com.datn.qltccn.security.SecurityUtils;
 import com.datn.qltccn.service.NganSachService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -16,9 +19,12 @@ public class NganSachServiceImpl implements NganSachService {
 
     private final ModelMapper modelMapper;
 
-    public NganSachServiceImpl(NgansachRepository ngansachRepository, ModelMapper modelMapper) {
+    private final NganSachDAO nganSachDAO;
+
+    public NganSachServiceImpl(NgansachRepository ngansachRepository, ModelMapper modelMapper, NganSachDAO nganSachDAO) {
         this.ngansachRepository = ngansachRepository;
         this.modelMapper = modelMapper;
+        this.nganSachDAO = nganSachDAO;
     }
 
     @Override
@@ -43,6 +49,16 @@ public class NganSachServiceImpl implements NganSachService {
 
     @Override
     public void edit(Ngansach ngansach) {
+        Ngansach ns = ngansachRepository.getOne(ngansach.getId());
+        ns.setIdLoaiNganSach(ngansach.getIdLoaiNganSach());
+        ns.setLoaitien(ngansach.getLoaitien());
+        ns.setNgaybatdau(ngansach.getNgaybatdau());
+        ns.setVonglap(ngansach.getVonglap());
+        ngansachRepository.save(ns);
+    }
 
+    @Override
+    public void search(NganSachSearchDTO dto) {
+        nganSachDAO.searchNganSach(dto, SecurityUtils.getCurrentUserIdLogin());
     }
 }

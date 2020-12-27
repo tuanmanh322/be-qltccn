@@ -1,7 +1,10 @@
 package com.datn.qltccn.service.impl;
 
+import com.datn.qltccn.dao.ChiPhiDAO;
+import com.datn.qltccn.dto.ChiPhiSearchDTO;
 import com.datn.qltccn.model.Chiphi;
 import com.datn.qltccn.repository.ChiphiRepository;
+import com.datn.qltccn.security.SecurityUtils;
 import com.datn.qltccn.service.ChiPhiService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -17,9 +20,12 @@ public class ChiPhiServiceImpl implements ChiPhiService {
 
     private final ModelMapper modelMapper;
 
-    public ChiPhiServiceImpl(ChiphiRepository chiphiRepository, ModelMapper modelMapper) {
+    private final ChiPhiDAO chiPhiDAO;
+
+    public ChiPhiServiceImpl(ChiphiRepository chiphiRepository, ModelMapper modelMapper, ChiPhiDAO chiPhiDAO) {
         this.chiphiRepository = chiphiRepository;
         this.modelMapper = modelMapper;
+        this.chiPhiDAO = chiPhiDAO;
     }
 
     @Override
@@ -45,6 +51,17 @@ public class ChiPhiServiceImpl implements ChiPhiService {
 
     @Override
     public void edit(Chiphi chiphi) {
+        Chiphi cp = chiphiRepository.getOne(chiphi.getId());
+        cp.setLoaitien(chiphi.getLoaitien());
+        cp.setNgaytao(new Date().toString());
+        cp.setMota(chiphi.getMota());
+        cp.setSotien(chiphi.getSotien());
+        cp.setIdLoaiNganSach(chiphi.getIdLoaiNganSach());
+        chiphiRepository.save(cp);
+    }
 
+    @Override
+    public void search(ChiPhiSearchDTO dto) {
+        chiPhiDAO.searchChiPhi(dto, SecurityUtils.getCurrentUserIdLogin());
     }
 }

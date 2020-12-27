@@ -1,5 +1,7 @@
 package com.datn.qltccn.controller;
 
+import com.datn.qltccn.dto.ChiPhiSearchDTO;
+import com.datn.qltccn.dto.NganSachSearchDTO;
 import com.datn.qltccn.model.Chiphi;
 import com.datn.qltccn.service.ChiPhiService;
 import org.springframework.http.HttpStatus;
@@ -46,11 +48,10 @@ public class ChiPhiController {
         return ResponseEntity.ok().build();
     }
 
-//    @PostMapping("/search")
-//    public ResponseEntity<Chiphi> userSearchDTOResponseEntity(@RequestBody ContactSearchDTO dto) {
-//        log.info("Start rest to userSearchDTOResponseEntity :{}", dto);
-//        contactService.searchContact(dto);
-//        return new ResponseEntity<>(dto, HttpStatus.OK);
-//    }
+    @PostMapping("/search")
+    public ResponseEntity<ChiPhiSearchDTO> search(@RequestBody ChiPhiSearchDTO dto){
+        chiPhiService.search(dto);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
 
 }

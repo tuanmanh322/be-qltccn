@@ -1,5 +1,6 @@
 package com.datn.qltccn.controller;
 
+import com.datn.qltccn.dto.ThuNhapSearchDTO;
 import com.datn.qltccn.model.Thunhap;
 import com.datn.qltccn.service.ThuNhapService;
 import org.springframework.http.HttpStatus;
@@ -44,5 +45,11 @@ public class ThuNhapController {
     public ResponseEntity<Void> deleteId(@PathVariable("id")Integer id){
         thuNhapService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<ThuNhapSearchDTO> search(@RequestBody ThuNhapSearchDTO dto){
+        thuNhapService.search(dto);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }

@@ -1,5 +1,7 @@
 package com.datn.qltccn.controller;
 
+import com.datn.qltccn.dto.NganSachSearchDTO;
+import com.datn.qltccn.dto.ThuNhapSearchDTO;
 import com.datn.qltccn.model.Ngansach;
 import com.datn.qltccn.service.NganSachService;
 import org.springframework.http.HttpStatus;
@@ -44,5 +46,11 @@ public class NganSachController {
     public ResponseEntity<Void> deleteId(@PathVariable("id")Integer id){
         nganSachService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<NganSachSearchDTO> search(@RequestBody NganSachSearchDTO dto){
+        nganSachService.search(dto);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }

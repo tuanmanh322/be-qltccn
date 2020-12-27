@@ -19,8 +19,8 @@ public class Chiphi implements Serializable {
     @Column(name = "id_user")
     private Integer idUser;
 
-    @Column(name = "loaingansach")
-    private String loaingansach;
+    @Column(name = "id_loaingansach")
+    private Integer idLoaiNganSach;
 
     @Column(name = "loaitien")
     private String loaitien;
