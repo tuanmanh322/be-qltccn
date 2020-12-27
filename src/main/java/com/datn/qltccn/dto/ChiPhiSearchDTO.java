@@ -7,4 +7,8 @@ import lombok.Setter;
 @Setter
 public class ChiPhiSearchDTO extends BaseSearch{
     private String tenloaingansach;
+
+    private String thang;
+
+    private String year;
 }

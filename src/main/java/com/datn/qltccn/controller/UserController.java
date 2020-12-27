@@ -11,8 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -75,20 +77,7 @@ public class UserController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
-        userRepository.deleteById(id);
-        Khachhang kh = khachhangRepository.findByIdUser(id);
-        khachhangRepository.delete(kh);
-        Optional<Thunhap> th = thunhapRepository.findByIdUser(id);
-        th.ifPresent(thunhapRepository::delete);
-
-        Optional<ThongbaoUser> tb = thongbaoUserRepository.findByIdUser(id);
-        tb.ifPresent(thongbaoUserRepository::delete);
-
-        Optional<Ngansach> ns = ngansachRepository.findByIdUser(id);
-        ns.ifPresent(ngansachRepository::delete);
-
-        Optional<Chiphi> cp = chiphiRepository.findByIdUser(id);
-        cp.ifPresent(chiphiRepository::delete);
+        userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
 

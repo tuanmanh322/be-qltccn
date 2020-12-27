@@ -8,4 +8,7 @@ import lombok.Setter;
 public class ThuNhapSearchDTO extends BaseSearch{
     private String mota;
 
+    private String thang;
+
+    private String year;
 }

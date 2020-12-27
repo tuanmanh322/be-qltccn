@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Table(name = "chiphi")
 @Data
@@ -29,7 +31,7 @@ public class Chiphi implements Serializable {
     private String mota;
 
     @Column(name = "ngaytao")
-    private String ngaytao;
+    private LocalDateTime ngaytao;
 
     @Column(name = "sotien")
     private String sotien;

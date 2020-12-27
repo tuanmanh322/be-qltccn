@@ -3,6 +3,8 @@ package com.datn.qltccn.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class ThuNhapDTO {
@@ -16,7 +18,7 @@ public class ThuNhapDTO {
 
     private String kihan;
 
-    private String ngaytao;
+    private LocalDateTime ngaytao;
 
     private String mota;
 

@@ -41,4 +41,6 @@ public interface UserService {
     void lockUser(Integer id);
 
     void unLockUser(Integer id);
+
+    void deleteUser(Integer id);
 }

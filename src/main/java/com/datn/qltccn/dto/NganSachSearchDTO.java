@@ -7,4 +7,8 @@ import lombok.Setter;
 @Setter
 public class NganSachSearchDTO extends BaseSearch {
     private String tenloaingansach;
+
+    private String year;
+
+    private String thang;
 }

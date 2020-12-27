@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class ChiPhiServiceImpl implements ChiPhiService {
 
     @Override
     public void add(Chiphi chiphi) {
-        chiphi.setNgaytao(new Date().toString());
+        chiphi.setNgaytao(LocalDateTime.now());
         chiphiRepository.save(chiphi);
     }
 
@@ -53,7 +54,7 @@ public class ChiPhiServiceImpl implements ChiPhiService {
     public void edit(Chiphi chiphi) {
         Chiphi cp = chiphiRepository.getOne(chiphi.getId());
         cp.setLoaitien(chiphi.getLoaitien());
-        cp.setNgaytao(new Date().toString());
+        cp.setNgaytao(LocalDateTime.now());
         cp.setMota(chiphi.getMota());
         cp.setSotien(chiphi.getSotien());
         cp.setIdLoaiNganSach(chiphi.getIdLoaiNganSach());

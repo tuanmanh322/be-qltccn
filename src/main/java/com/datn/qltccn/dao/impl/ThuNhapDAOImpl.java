@@ -23,14 +23,22 @@ public class ThuNhapDAOImpl extends AbstractDAO implements ThuNhapDAO {
         sb.append(" tn.ngaytao,");
         sb.append(" tn.mota,");
         sb.append(" kh.tenkhachhang ");
-        sb.append(" from thunhap as tn left join u as u.id = tn.id_user ");
+        sb.append(" from thunhap as tn left join user as u on  u.id = tn.id_user ");
         sb.append(" left join khachhang as kh on kh.id_user = u.id ");
         sb.append(" where 1 = 1 ");
         sb.append(" and u.id =:p_id ");
         pa.put("p_id",idLogin);
         if (StringUtils.isNotEmpty(thuNhapSearchDTO.getMota())){
-            sb.append(" and kh.mota =:p_khachhang");
-            pa.put("p_khachhang", "%" + thuNhapSearchDTO.getMota() +"%");
+            sb.append(" and tn.mota  like :p_khachhang");
+            pa.put("p_khachhang", "%" + thuNhapSearchDTO.getMota().trim() +"%");
+        }
+        if (StringUtils.isNotEmpty(thuNhapSearchDTO.getThang())){
+            sb.append(" and MONTH(tn.ngaytao) =:p_pmnhfas");
+            pa.put("p_pmnhfas", thuNhapSearchDTO.getThang().trim());
+        }
+        if (StringUtils.isNotEmpty(thuNhapSearchDTO.getYear())){
+            sb.append(" and YEAR(tn.ngaytao) =:p_years");
+            pa.put("p_years", thuNhapSearchDTO.getYear().trim());
         }
         if (!thuNhapSearchDTO.getOrders().isEmpty()){
             sb.append(" order by ");

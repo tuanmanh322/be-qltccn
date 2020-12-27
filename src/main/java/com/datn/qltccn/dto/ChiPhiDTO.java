@@ -3,6 +3,8 @@ package com.datn.qltccn.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 public class ChiPhiDTO {
@@ -12,7 +14,7 @@ public class ChiPhiDTO {
 
     private String loaitien;
 
-    private String ngaytao;
+    private LocalDateTime ngaytao;
 
     private String mota;
 

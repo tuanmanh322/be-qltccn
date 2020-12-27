@@ -52,8 +52,9 @@ public class NganSachServiceImpl implements NganSachService {
         Ngansach ns = ngansachRepository.getOne(ngansach.getId());
         ns.setIdLoaiNganSach(ngansach.getIdLoaiNganSach());
         ns.setLoaitien(ngansach.getLoaitien());
-        ns.setNgaybatdau(ngansach.getNgaybatdau());
+        ns.setNgaytao(ngansach.getNgaytao());
         ns.setVonglap(ngansach.getVonglap());
+        ns.setSotien(ngansach.getSotien());
         ngansachRepository.save(ns);
     }
 

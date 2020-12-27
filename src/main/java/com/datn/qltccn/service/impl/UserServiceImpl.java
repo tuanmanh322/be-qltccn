@@ -6,12 +6,8 @@ import com.datn.qltccn.dto.UserDTO;
 import com.datn.qltccn.dto.UserSearchDTO;
 import com.datn.qltccn.exception.ErrorCode;
 import com.datn.qltccn.exception.ResultException;
-import com.datn.qltccn.model.Khachhang;
-import com.datn.qltccn.model.Role;
-import com.datn.qltccn.model.User;
-import com.datn.qltccn.repository.KhachhangRepository;
-import com.datn.qltccn.repository.RoleRepository;
-import com.datn.qltccn.repository.UserRepository;
+import com.datn.qltccn.model.*;
+import com.datn.qltccn.repository.*;
 import com.datn.qltccn.security.SecurityUtils;
 import com.datn.qltccn.security.UserTypeEnum;
 import com.datn.qltccn.service.FileStorageService;
@@ -23,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,13 +46,25 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private KhachhangRepository khachhangRepository;
 
+    private final ThunhapRepository thunhapRepository;
 
-    public UserServiceImpl(UserRepository usersRepository, RoleRepository rolesRepository, ModelMapper modelMapper, UserDAO userDAO, FileStorageService fileStorageService) {
+    private final ThongbaoUserRepository thongbaoUserRepository;
+
+    private final NgansachRepository ngansachRepository;
+
+    private final ChiphiRepository chiphiRepository;
+
+
+    public UserServiceImpl(UserRepository usersRepository, RoleRepository rolesRepository, ModelMapper modelMapper, UserDAO userDAO, FileStorageService fileStorageService, ThunhapRepository thunhapRepository, ThongbaoUserRepository thongbaoUserRepository, NgansachRepository ngansachRepository, ChiphiRepository chiphiRepository) {
         this.usersRepository = usersRepository;
         this.rolesRepository = rolesRepository;
         this.modelMapper = modelMapper;
         this.userDAO = userDAO;
         this.fileStorageService = fileStorageService;
+        this.thunhapRepository = thunhapRepository;
+        this.thongbaoUserRepository = thongbaoUserRepository;
+        this.ngansachRepository = ngansachRepository;
+        this.chiphiRepository = chiphiRepository;
     }
 
     @Override
@@ -165,7 +174,11 @@ public class UserServiceImpl implements UserService {
         if (user.isPresent()){
             UserDTO dto  = modelMapper.map(user.get(),UserDTO.class);
             Role role =  rolesRepository.findById(user.get().getIdRole()).get();
-            Khachhang kh = khachhangRepository.findByIdUser(user.get().getId());
+            Optional<Khachhang> khc = khachhangRepository.findByIdUser(user.get().getId());
+            Khachhang kh = new Khachhang();
+            if (khc.isPresent()){
+                kh = khc.get();
+            }
             dto.setNghenghiep(kh.getNghenghiep());
             dto.setTenkhachhang(kh.getTenkhachhang());
             dto.setEmail(kh.getEmail());
@@ -188,7 +201,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO editProfile(UserDTO userDTO) {
-        Khachhang kh = khachhangRepository.findByIdUser(SecurityUtils.getCurrentUserIdLogin());
+        Optional<Khachhang> khc = khachhangRepository.findByIdUser(SecurityUtils.getCurrentUserIdLogin());
+        Khachhang kh = new Khachhang();
+        if (khc.isPresent()){
+            kh = khc.get();
+        }
         kh.setTenkhachhang(userDTO.getTenkhachhang());
         kh.setNghenghiep(userDTO.getNghenghiep());
         kh.setNgaysinh(userDTO.getNgaysinh());
@@ -231,6 +248,32 @@ public class UserServiceImpl implements UserService {
         User u = usersRepository.getOne(id);
 //        u.setActive(true);
         usersRepository.save(u);
+    }
+
+    @Override
+    public void deleteUser(Integer id) {
+        usersRepository.deleteById(id);
+        Optional<Khachhang> kh = khachhangRepository.findByIdUser(id);
+        kh.ifPresent(khachhangRepository:: delete);
+        List<Thunhap> th = thunhapRepository.findByIdUser(id);
+        if (!CollectionUtils.isEmpty(th)){
+            thunhapRepository.deleteAll(th);
+        }
+
+        List<ThongbaoUser> tb = thongbaoUserRepository.findByIdUser(id);
+        if (!CollectionUtils.isEmpty(tb)){
+            thongbaoUserRepository.deleteAll(tb);
+        }
+
+        List<Ngansach> ns = ngansachRepository.findByIdUser(id);
+        if (!CollectionUtils.isEmpty(ns)){
+            ngansachRepository.deleteAll(ns);
+        }
+
+        List<Chiphi> cp = chiphiRepository.findByIdUser(id);
+        if (!CollectionUtils.isEmpty(cp)){
+            chiphiRepository.deleteAll(cp);
+        }
     }
 
     private User getUserLogin(){

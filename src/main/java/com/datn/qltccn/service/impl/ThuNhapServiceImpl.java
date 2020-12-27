@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class ThuNhapServiceImpl implements ThuNhapService {
         tn.setKihan(thunhap.getKihan());
         tn.setLoaitien(thunhap.getLoaitien());
         tn.setMota(thunhap.getMota());
-        tn.setNgaytao(new Date().toString());
+        tn.setNgaytao(LocalDateTime.now());
         tn.setSotien(thunhap.getSotien());
         thunhapRepository.save(tn);
     }

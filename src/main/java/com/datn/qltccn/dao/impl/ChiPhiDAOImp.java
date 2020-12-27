@@ -25,15 +25,23 @@ public class ChiPhiDAOImp extends AbstractDAO implements ChiPhiDAO {
         sb.append(" lns.tenloaingansach,");
         sb.append(" lns.id as idLoaiNganSach,");
         sb.append(" kh.tenkhachhang ");
-        sb.append(" from chiphi as cp left join u as u.id = cp.id_user ");
+        sb.append(" from chiphi as cp left join user as u on u.id = cp.id_user ");
         sb.append(" left join khachhang as kh on kh.id_user = u.id ");
         sb.append(" left join loaingansach as lns on lns.id = cp.id_loaingansach ");
         sb.append(" where 1 = 1 ");
         sb.append(" and u.id =:p_id ");
         pa.put("p_id",idlOGIN);
         if (StringUtils.isNotEmpty(dto.getTenloaingansach())){
-            sb.append(" and lns.tenloaingansach =:p_khachhang");
-            pa.put("p_khachhang", "%" + dto.getTenloaingansach() +"%");
+            sb.append(" and lns.tenloaingansach like :p_khachhang");
+            pa.put("p_khachhang", "%" + dto.getTenloaingansach().trim() +"%");
+        }
+        if (StringUtils.isNotEmpty(dto.getThang())){
+            sb.append(" and MONTH(cp.ngaytao) =:p_pmnhfas");
+            pa.put("p_pmnhfas", dto.getThang().trim());
+        }
+        if (StringUtils.isNotEmpty(dto.getYear())){
+            sb.append(" and YEAR(cp.ngaytao) =:p_years");
+            pa.put("p_years", dto.getYear().trim());
         }
         if (!dto.getOrders().isEmpty()){
             sb.append(" order by ");
@@ -52,7 +60,7 @@ public class ChiPhiDAOImp extends AbstractDAO implements ChiPhiDAO {
                 }
             });
         }else {
-            sb.append(" order by ns.ngaytao ");
+            sb.append(" order by cp.ngaytao ");
         }
         searchAndCountTotal(dto, sb.toString(), pa, ChiPhiDTO.class);
     }
