@@ -54,6 +54,17 @@ public class UserServiceImpl implements UserService {
 
     private final ChiphiRepository chiphiRepository;
 
+    @Autowired
+    private LoaithongbaoRepository loaithongbaoRepository;
+
+    @Autowired
+    private LoaingansachRepository loaingansachRepository;
+
+    @Autowired
+    private LoaiviRepository loaiviRepository;
+
+    @Autowired
+    private ViRepository viRepository;
 
     public UserServiceImpl(UserRepository usersRepository, RoleRepository rolesRepository, ModelMapper modelMapper, UserDAO userDAO, FileStorageService fileStorageService, ThunhapRepository thunhapRepository, ThongbaoUserRepository thongbaoUserRepository, NgansachRepository ngansachRepository, ChiphiRepository chiphiRepository) {
         this.usersRepository = usersRepository;
@@ -255,24 +266,44 @@ public class UserServiceImpl implements UserService {
         usersRepository.deleteById(id);
         Optional<Khachhang> kh = khachhangRepository.findByIdUser(id);
         kh.ifPresent(khachhangRepository:: delete);
-        List<Thunhap> th = thunhapRepository.findByIdUser(id);
+        List<Thunhap> th = thunhapRepository.findAllByIdUser(id);
         if (!CollectionUtils.isEmpty(th)){
             thunhapRepository.deleteAll(th);
         }
 
-        List<ThongbaoUser> tb = thongbaoUserRepository.findByIdUser(id);
+        List<ThongbaoUser> tb = thongbaoUserRepository.findAllByIdUser(id);
         if (!CollectionUtils.isEmpty(tb)){
             thongbaoUserRepository.deleteAll(tb);
         }
 
-        List<Ngansach> ns = ngansachRepository.findByIdUser(id);
+        List<Ngansach> ns = ngansachRepository.findAllByIdUser(id);
         if (!CollectionUtils.isEmpty(ns)){
             ngansachRepository.deleteAll(ns);
         }
 
-        List<Chiphi> cp = chiphiRepository.findByIdUser(id);
+        List<Chiphi> cp = chiphiRepository.findAllByIdUser(id);
         if (!CollectionUtils.isEmpty(cp)){
             chiphiRepository.deleteAll(cp);
+        }
+
+        List<Loaingansach> lns = loaingansachRepository.findAllByIdUser(id);
+        if (!CollectionUtils.isEmpty(lns)){
+            loaingansachRepository.deleteAll(lns);
+        }
+
+        List<Loaithongbao> ltb  = loaithongbaoRepository.findAllByIdUser(id);
+        if (!CollectionUtils.isEmpty(ltb)){
+            loaithongbaoRepository.deleteAll(ltb);
+        }
+
+        List<Loaivi> lv  = loaiviRepository.findAllByIdUser(id);
+        if (!CollectionUtils.isEmpty(lv)){
+            loaiviRepository.deleteAll(lv);
+        }
+
+        List<Vi> uv  = viRepository.findAllByIdUser(id);
+        if (!CollectionUtils.isEmpty(uv)){
+            viRepository.deleteAll(uv);
         }
     }
 

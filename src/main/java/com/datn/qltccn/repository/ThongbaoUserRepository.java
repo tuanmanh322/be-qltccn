@@ -10,5 +10,8 @@ import java.util.Optional;
 public interface ThongbaoUserRepository extends JpaRepository<ThongbaoUser, Integer>, JpaSpecificationExecutor<ThongbaoUser> {
     List<ThongbaoUser> findByIdUser(Integer id);
 
+    List<ThongbaoUser> findAllByIdUser(Integer id);
+
+
     List<ThongbaoUser> findAllByIdThongbao(Integer id);
 }

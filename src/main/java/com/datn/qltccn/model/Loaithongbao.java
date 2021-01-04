@@ -22,5 +22,6 @@ public class Loaithongbao implements Serializable {
     @Column(name = "tenloaithongbao")
     private String tenloaithongbao;
 
-    
+    @Column(name = "id_user")
+    private int idUser;
 }

@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -61,5 +62,28 @@ public class NganSachServiceImpl implements NganSachService {
     @Override
     public void search(NganSachSearchDTO dto) {
         nganSachDAO.searchNganSach(dto, SecurityUtils.getCurrentUserIdLogin());
+    }
+
+    @Override
+    public List<Integer> getListByMonth(int year) {
+        List<Integer> data = new ArrayList<>();
+        for (int i = 1; i<=12; i++){
+            int total = 0;
+            List<Ngansach> chiphis=   ngansachRepository.getListByMonth(i,year);
+            if (!chiphis.isEmpty()){
+                for (Ngansach cp: chiphis){
+                    total = total + Integer.parseInt(cp.getSotien());
+                }
+                data.add(total);
+            }else{
+                data.add(total);
+            }
+        }
+        return data;
+    }
+
+    @Override
+    public List<Ngansach> getAllNsByMonthAndYear(int month, int year) {
+        return ngansachRepository.getListByMonth(month,year);
     }
 }

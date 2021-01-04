@@ -4,6 +4,8 @@ import com.datn.qltccn.model.Loaingansach;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface LoaingansachRepository extends JpaRepository<Loaingansach, Integer>, JpaSpecificationExecutor<Loaingansach> {
+import java.util.List;
 
+public interface LoaingansachRepository extends JpaRepository<Loaingansach, Integer>, JpaSpecificationExecutor<Loaingansach> {
+    List<Loaingansach> findAllByIdUser(int idU);
 }

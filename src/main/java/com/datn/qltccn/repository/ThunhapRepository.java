@@ -9,4 +9,6 @@ import java.util.Optional;
 
 public interface ThunhapRepository extends JpaRepository<Thunhap, Integer>, JpaSpecificationExecutor<Thunhap> {
     List<Thunhap> findByIdUser(Integer id);
+
+    List<Thunhap> findAllByIdUser(Integer id);
 }

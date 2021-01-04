@@ -67,15 +67,17 @@ public class ChiPhiServiceImpl implements ChiPhiService {
     }
 
     @Override
-    public List<Integer> getListByMonth(int month) {
+    public List<Integer> getListByMonth(int year) {
         List<Integer> data = new ArrayList<>();
         for (int i = 1; i<=12; i++){
             int total = 0;
-          List<Chiphi> chiphis=   chiphiRepository.getListByMonth(i);
+          List<Chiphi> chiphis=   chiphiRepository.getListByMonth(i, year );
           if (!chiphis.isEmpty()){
                 for (Chiphi cp: chiphis){
                     total = total + Integer.parseInt(cp.getSotien());
                 }
+              data.add(total);
+          }else{
               data.add(total);
           }
         }

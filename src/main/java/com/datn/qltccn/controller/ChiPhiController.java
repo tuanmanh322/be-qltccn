@@ -25,7 +25,7 @@ public class ChiPhiController {
         return new ResponseEntity<>(chiPhiService.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/month/{mon}")
+    @GetMapping("/year/{mon}")
     public ResponseEntity<List<Integer>> getAllByMonth(@PathVariable("mon") int month){
         return new ResponseEntity<>(chiPhiService.getListByMonth(month), HttpStatus.OK);
     }

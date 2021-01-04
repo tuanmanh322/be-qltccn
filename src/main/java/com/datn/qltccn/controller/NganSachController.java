@@ -25,6 +25,16 @@ public class NganSachController {
         return new ResponseEntity<>(nganSachService.getAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/year/{ye}")
+    public ResponseEntity<List<Integer>> getAllByMonth(@PathVariable("ye") int year){
+        return new ResponseEntity<>(nganSachService.getListByMonth(year), HttpStatus.OK);
+    }
+
+    @GetMapping("/check-full/{month}/{year}")
+    public ResponseEntity<List<Ngansach>> getAllByMonthAndYear(@PathVariable("month") int month, @PathVariable("year") int year){
+        return new ResponseEntity<>(nganSachService.getAllNsByMonthAndYear(month,year), HttpStatus.OK);
+    }
+
     @GetMapping("/detail/{id}")
     public ResponseEntity<Ngansach> getById(@PathVariable("id")Integer id){
         return new ResponseEntity<>(nganSachService.getById(id), HttpStatus.OK);
