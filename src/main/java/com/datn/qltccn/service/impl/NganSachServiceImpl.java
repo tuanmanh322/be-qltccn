@@ -9,6 +9,7 @@ import com.datn.qltccn.service.NganSachService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,5 +85,17 @@ public class NganSachServiceImpl implements NganSachService {
     @Override
     public List<Ngansach> getAllNsByMonthAndYear(int month, int year) {
         return ngansachRepository.getListByMonth(month,year , SecurityUtils.getCurrentUserIdLogin());
+    }
+
+    @Override
+    public Integer getAllByIDLNS(Integer idLNS) {
+        int total = 0;
+        List<Ngansach> ngansaches = ngansachRepository.findAllByIdLoaiNganSach(idLNS);
+        if (!CollectionUtils.isEmpty(ngansaches)){
+            for (Ngansach ns: ngansaches){
+                total+= Integer.parseInt(ns.getSotien());
+            }
+        }
+        return total;
     }
 }

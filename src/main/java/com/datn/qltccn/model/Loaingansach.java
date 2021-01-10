@@ -24,4 +24,7 @@ public class Loaingansach implements Serializable {
 
     @Column(name = "id_user")
     private int idUser;
+
+    @Column(name = "han_muc")
+    private int hanMuc;
 }

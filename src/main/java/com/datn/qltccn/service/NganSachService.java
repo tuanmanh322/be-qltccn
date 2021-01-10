@@ -11,4 +11,6 @@ public interface NganSachService extends BaseService<Ngansach> {
     List<Integer> getListByMonth(int year);
 
     List<Ngansach> getAllNsByMonthAndYear(int month, int year);
+
+    Integer getAllByIDLNS(Integer idLNS);
 }

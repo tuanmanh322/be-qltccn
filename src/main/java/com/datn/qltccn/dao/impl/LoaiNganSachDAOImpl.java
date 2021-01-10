@@ -17,7 +17,8 @@ public class LoaiNganSachDAOImpl extends AbstractDAO implements LoaiNganSachDAO 
         Map<String,Object> pa = new HashMap<>();
 
         sb.append(" select distinct lns.id ,");
-        sb.append(" lns.tenloaingansach ");
+        sb.append(" lns.tenloaingansach, ");
+        sb.append(" lns.han_muc as hanMuc ");
         sb.append(" from loaingansach as lns left join user as u on u.id = lns.id_user");
         sb.append(" where 1 = 1");
         sb.append(" and u.id =:p_ida ");

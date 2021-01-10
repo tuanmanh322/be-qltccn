@@ -9,4 +9,6 @@ public class LoaiNganSachDTO {
     private Integer id;
 
     private String tenloaingansach;
+
+    private int hanMuc;
 }

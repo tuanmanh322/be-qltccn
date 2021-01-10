@@ -63,4 +63,9 @@ public class NganSachController {
         nganSachService.search(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
+
+    @GetMapping("/lns/{lns}")
+    public ResponseEntity<Integer> getAllByLNS(@PathVariable("lns") int idLNS){
+        return new ResponseEntity<>(nganSachService.getAllByIDLNS(idLNS), HttpStatus.OK);
+    }
 }
