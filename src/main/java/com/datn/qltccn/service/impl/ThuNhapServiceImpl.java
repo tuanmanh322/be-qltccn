@@ -9,8 +9,10 @@ import com.datn.qltccn.service.ThuNhapService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -63,5 +65,22 @@ public class ThuNhapServiceImpl implements ThuNhapService {
     @Override
     public void search(ThuNhapSearchDTO dto) {
         thuNhapDAO.searchThuNhap(dto, SecurityUtils.getCurrentUserIdLogin());
+    }
+
+    @Override
+    public List<Integer> getListByMonth(int year) {
+        Integer idUser = SecurityUtils.getCurrentUserIdLogin();
+        List<Integer> re = new ArrayList<>();
+        for (int i = 1 ; i<13 ; i++){
+            int total = 0;
+            List<Thunhap> thunhaps = thunhapRepository.getListByMonth(i,year,idUser);
+            if (!CollectionUtils.isEmpty(thunhaps)){
+                for (Thunhap d: thunhaps){
+                    total+= Integer.parseInt(d.getSotien());
+                }
+            }
+            re.add(total);
+        }
+        return re;
     }
 }

@@ -16,6 +16,6 @@ public interface NgansachRepository extends JpaRepository<Ngansach, Integer>, Jp
 
     List<Ngansach> findAllByIdLoaiNganSach(Integer id);
 
-    @Query(nativeQuery = true, value = "select cp.* from ngansach as cp where MONTH(cp.ngaytao) =?1 and YEAR(cp.ngaytao) = ?2")
-    List<Ngansach> getListByMonth(int month, int year);
+    @Query(nativeQuery = true, value = "select cp.* from ngansach as cp where MONTH(cp.ngaytao) =?1 and YEAR(cp.ngaytao) = ?2 and cp.id_user = ?3")
+    List<Ngansach> getListByMonth(int month, int year, Integer idUser);
 }

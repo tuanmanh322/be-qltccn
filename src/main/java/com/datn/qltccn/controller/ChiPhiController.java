@@ -59,4 +59,13 @@ public class ChiPhiController {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
+
+    @GetMapping("/show/{month}/{year}/{idlns}")
+    public ResponseEntity<List<Integer>> getAllByIdLNS(
+            @PathVariable("month") int month,
+            @PathVariable("year") int year,
+            @PathVariable("idlns") int idlns){
+        return new ResponseEntity<>(chiPhiService.getListByIDlns(month,year,idlns), HttpStatus.OK);
+    }
+
 }

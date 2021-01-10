@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -27,7 +26,7 @@ public class Vi implements Serializable {
     @Column(name = "id_user")
     private Integer idUser;
 
-    @Column(name = "modified date")
+    @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
 
     @Column(name = "money")

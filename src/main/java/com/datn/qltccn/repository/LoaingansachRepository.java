@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.List;
 
 public interface LoaingansachRepository extends JpaRepository<Loaingansach, Integer>, JpaSpecificationExecutor<Loaingansach> {
-    List<Loaingansach> findAllByIdUser(int idU);
+    List<Loaingansach> findAllByIdUser(Integer idU);
 }

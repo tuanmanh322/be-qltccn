@@ -38,12 +38,12 @@ public class LoaiViServiceImpl implements LoaiViService {
 
     @Override
     public Loaivi getById(Integer id) {
-        return loaiviRepository.getOne(id);
+        return loaiviRepository.findByIdUserAndId(SecurityUtils.getCurrentUserIdLogin(),id);
     }
 
     @Override
     public List<Loaivi> getAll() {
-        return loaiviRepository.findAll();
+        return loaiviRepository.findAllByIdUser(SecurityUtils.getCurrentUserIdLogin());
     }
 
     @Override
@@ -60,7 +60,6 @@ public class LoaiViServiceImpl implements LoaiViService {
 
     @Override
     public void search(LoaiViSearchDTO dto) {
-        int id = SecurityUtils.getCurrentUserIdLogin();
-        loaiViDAO.searchLV(dto, id);
+        loaiViDAO.searchLV(dto);
     }
 }

@@ -1,5 +1,6 @@
 package com.datn.qltccn.controller;
 
+import com.datn.qltccn.dto.ViDTO;
 import com.datn.qltccn.model.Vi;
 import com.datn.qltccn.service.ViService;
 import org.springframework.http.HttpStatus;
@@ -47,4 +48,8 @@ public class ViController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/by-user-login")
+    public ResponseEntity<ViDTO> getByUser(){
+        return null;
+    }
 }

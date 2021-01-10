@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -176,6 +177,15 @@ public class UserServiceImpl implements UserService {
         khachhang.setNghenghiep(userDTO.getNghenghiep());
         khachhang.setTenkhachhang(userDTO.getTenkhachhang());
         khachhangRepository.save(khachhang);
+        for (int i = 1 ; i<=2; i++){
+            Vi vi = new Vi();
+            vi.setIdUser(user.getId());
+            vi.setModifiedDate(LocalDateTime.now());
+            vi.setMoney("0");
+            vi.setDescription("");
+            vi.setIdLoaiVi(i);
+            viRepository.save(vi);
+        }
     }
 
     @Override

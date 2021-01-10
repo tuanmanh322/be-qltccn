@@ -24,6 +24,11 @@ public class ThuNhapController {
         return new ResponseEntity<>(thuNhapService.getAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/year/{year}")
+    public ResponseEntity<List<Integer>> getAllByMonth(@PathVariable("year") int year){
+        return new ResponseEntity<>(thuNhapService.getListByMonth(year), HttpStatus.OK);
+    }
+
     @GetMapping("/detail/{id}")
     public ResponseEntity<Thunhap> getById(@PathVariable("id")Integer id){
         return new ResponseEntity<>(thuNhapService.getById(id), HttpStatus.OK);

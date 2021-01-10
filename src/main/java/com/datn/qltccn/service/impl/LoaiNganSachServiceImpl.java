@@ -41,7 +41,12 @@ public class LoaiNganSachServiceImpl implements LoaiNganSachService {
 
     @Override
     public void search(LoaiNganSachSearchDTO dto) {
-        loaiNganSachDAO.search(dto);
+        loaiNganSachDAO.search(dto, SecurityUtils.getCurrentUserIdLogin());
+    }
+
+    @Override
+    public List<Loaingansach> listByUser() {
+        return loaingansachRepository.findAllByIdUser(SecurityUtils.getCurrentUserIdLogin());
     }
 
     @Override

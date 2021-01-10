@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.List;
 
 public interface LoaiviRepository extends JpaRepository<Loaivi, Integer>, JpaSpecificationExecutor<Loaivi> {
-    List<Loaivi> findAllByIdUser(int idU);
+    List<Loaivi> findAllByIdUser(Integer idU);
+
+    Loaivi findByIdUserAndId(Integer idUser, Integer idLV);
 }

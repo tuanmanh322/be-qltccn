@@ -1,6 +1,7 @@
 package com.datn.qltccn.service.impl;
 
 import com.datn.qltccn.dao.ChiPhiDAO;
+import com.datn.qltccn.dto.ChiPhiDTO;
 import com.datn.qltccn.dto.ChiPhiSearchDTO;
 import com.datn.qltccn.model.Chiphi;
 import com.datn.qltccn.repository.ChiphiRepository;
@@ -10,8 +11,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -69,9 +71,10 @@ public class ChiPhiServiceImpl implements ChiPhiService {
     @Override
     public List<Integer> getListByMonth(int year) {
         List<Integer> data = new ArrayList<>();
+        Integer idUser =  SecurityUtils.getCurrentUserIdLogin();
         for (int i = 1; i<=12; i++){
             int total = 0;
-          List<Chiphi> chiphis=   chiphiRepository.getListByMonth(i, year );
+          List<Chiphi> chiphis=   chiphiRepository.getListByMonth(i, year ,idUser);
           if (!chiphis.isEmpty()){
                 for (Chiphi cp: chiphis){
                     total = total + Integer.parseInt(cp.getSotien());
@@ -80,6 +83,25 @@ public class ChiPhiServiceImpl implements ChiPhiService {
           }else{
               data.add(total);
           }
+        }
+        return data;
+    }
+
+    @Override
+    public List<Integer> getListByIDlns(int month, int year, Integer idLoaiNS) {
+        List<Integer> data = new ArrayList<>();
+        Integer idUser =  SecurityUtils.getCurrentUserIdLogin();
+        YearMonth yearMonthObject = YearMonth.of(year, month);
+        int daysInMonth = yearMonthObject.lengthOfMonth();
+        for (int i = 1; i<=daysInMonth; i++){
+            int total = 0;
+            List<ChiPhiDTO> chiphis=   chiPhiDAO.getAllByMonthAndYearAndIdLoaiNS(i,month, year ,idUser,idLoaiNS);
+            if (!chiphis.isEmpty()){
+                for (ChiPhiDTO cp: chiphis){
+                    total = total + Integer.parseInt(cp.getSotien());
+                }
+            }
+            data.add(total);
         }
         return data;
     }

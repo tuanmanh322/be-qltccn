@@ -24,6 +24,11 @@ public class LoaiNganSachController {
         return new ResponseEntity<>(loaiNganSachService.getAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/all-by")
+    public ResponseEntity<List<Loaingansach>> getAllByUser(){
+        return new ResponseEntity<>(loaiNganSachService.listByUser(), HttpStatus.OK);
+    }
+
     @GetMapping("/detail/{id}")
     public ResponseEntity<Loaingansach> getById(@PathVariable("id")Integer id){
         return new ResponseEntity<>(loaiNganSachService.getById(id), HttpStatus.OK);

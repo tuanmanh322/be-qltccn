@@ -9,6 +9,7 @@ import com.datn.qltccn.model.ThongbaoUser;
 import com.datn.qltccn.repository.LoaithongbaoRepository;
 import com.datn.qltccn.repository.ThongbaoRepository;
 import com.datn.qltccn.repository.ThongbaoUserRepository;
+import com.datn.qltccn.security.SecurityUtils;
 import com.datn.qltccn.service.LoaiThongBaoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -40,7 +41,7 @@ public class LoaiThongBaoServiceImpl implements LoaiThongBaoService {
 
     @Override
     public void search(LoaiThongBaoSearchDTO dto) {
-        loaiThongBaoDAO.search(dto);
+        loaiThongBaoDAO.search(dto, SecurityUtils.getCurrentUserIdLogin());
     }
 
     @Override

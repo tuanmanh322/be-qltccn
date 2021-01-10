@@ -12,14 +12,16 @@ import java.util.Map;
 @Repository
 public class LoaiNganSachDAOImpl extends AbstractDAO implements LoaiNganSachDAO {
     @Override
-    public void search(LoaiNganSachSearchDTO dto) {
+    public void search(LoaiNganSachSearchDTO dto, Integer idUser) {
         StringBuilder sb = new StringBuilder();
         Map<String,Object> pa = new HashMap<>();
 
         sb.append(" select distinct lns.id ,");
         sb.append(" lns.tenloaingansach ");
-        sb.append(" from loaingansach as lns");
+        sb.append(" from loaingansach as lns left join user as u on u.id = lns.id_user");
         sb.append(" where 1 = 1");
+        sb.append(" and u.id =:p_ida ");
+        pa.put("p_ida",idUser);
         if (StringUtils.isNotEmpty(dto.getTenloai())){
             sb.append(" and lns.tenloaingansach like :p_tel");
             pa.put("p_tel", "%" + dto.getTenloai().trim() + "%");
