@@ -1,316 +1,298 @@
--- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
---
--- Host: localhost    Database: qttccn
--- ------------------------------------------------------
--- Server version	8.0.22
+/*
+ Navicat Premium Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+ Source Server         : databaseMysql
+ Source Server Type    : MySQL
+ Source Server Version : 80021
+ Source Host           : localhost:3306
+ Source Schema         : qttccn
 
---
--- Table structure for table `chiphi`
---
+ Target Server Type    : MySQL
+ Target Server Version : 80021
+ File Encoding         : 65001
 
+ Date: 11/01/2021 21:51:10
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for chiphi
+-- ----------------------------
 DROP TABLE IF EXISTS `chiphi`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `chiphi` (
+CREATE TABLE `chiphi`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_user` int DEFAULT NULL,
-  `id_loaingansach` int DEFAULT NULL,
-  `loaitien` varchar(50) DEFAULT NULL,
-  `ngaytao` varchar(50) DEFAULT NULL,
-  `mota` varchar(45) DEFAULT NULL,
-  `sotien` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_user` int NULL DEFAULT NULL,
+  `id_loaingansach` int NULL DEFAULT NULL,
+  `loaitien` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ngaytao` datetime(0) NULL DEFAULT NULL,
+  `mota` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `sotien` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `modified_date` date NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `chiphi`
---
+-- ----------------------------
+-- Records of chiphi
+-- ----------------------------
+INSERT INTO `chiphi` VALUES (7, 2, 4, 'VNĐ', '2020-11-26 20:36:00', '123123', '1000', '2021-01-10');
+INSERT INTO `chiphi` VALUES (8, 2, 4, '0.22', '2020-10-27 20:36:00', 'Công ty vàng trung quốc', '1500', '2021-01-10');
+INSERT INTO `chiphi` VALUES (9, 2, 4, 'VNĐ', '2020-09-27 20:37:00', 'Tiền mua game', '1000', '2021-01-10');
+INSERT INTO `chiphi` VALUES (10, 2, 4, 'VNĐ', '2020-08-27 20:40:00', 'Tiền mua game', '800', '2021-01-10');
+INSERT INTO `chiphi` VALUES (11, 2, 4, 'VNĐ', '2020-07-23 20:40:00', 'Tiền mua game', '500', '2021-01-10');
+INSERT INTO `chiphi` VALUES (12, 2, 4, 'VNĐ', '2020-06-27 20:40:00', 'Tiền mua game', '130', '2021-01-10');
+INSERT INTO `chiphi` VALUES (13, 2, 4, 'VNĐ', '2020-05-09 20:41:00', 'Tiền mua game', '190', '2021-01-10');
+INSERT INTO `chiphi` VALUES (14, 2, 4, 'VNĐ', '2020-04-17 20:41:00', 'Tiền mua game', '260', '2021-01-10');
+INSERT INTO `chiphi` VALUES (15, 2, 4, 'VNĐ', '2020-04-17 20:42:00', 'Tiền mua game', '350', '2021-01-10');
+INSERT INTO `chiphi` VALUES (16, 2, 4, 'VNĐ', '2020-03-07 20:42:00', 'Tiền mua game', '360', '2021-01-10');
+INSERT INTO `chiphi` VALUES (17, 2, 4, 'VNĐ', '2020-02-14 20:42:00', 'Tiền mua game', '650', '2021-01-10');
+INSERT INTO `chiphi` VALUES (19, 2, 3, 'VNĐ', '2021-01-06 22:09:00', 'Tiền mua game', '123123', '2021-01-10');
+INSERT INTO `chiphi` VALUES (20, 2, 4, 'VNĐ', '2021-01-13 21:15:00', 'Tiền mua game', '12345', NULL);
+INSERT INTO `chiphi` VALUES (21, 2, 4, '23333', '2021-01-01 21:19:00', '123123', '123123', NULL);
+INSERT INTO `chiphi` VALUES (22, 2, 4, 'VNĐ', '2021-01-04 21:25:00', 'Tiền mua game', '123123', '2021-01-11');
+INSERT INTO `chiphi` VALUES (23, 2, 4, 'VNĐ', '2020-12-30 21:26:00', 'Tiền mua game', '11111', '2021-01-11');
+INSERT INTO `chiphi` VALUES (24, 2, 4, 'VNĐ', '2021-01-15 21:27:00', 'Tiền mua game', '312312', '2021-01-11');
+INSERT INTO `chiphi` VALUES (25, 2, 4, 'VNĐ', '2020-12-31 21:29:00', 'Tiền mua game', '23123', '2021-01-11');
+INSERT INTO `chiphi` VALUES (26, 2, 4, 'VNĐ', '2021-01-06 21:33:00', 'Tiền mua game', '1500000', '2021-01-11');
 
-LOCK TABLES `chiphi` WRITE;
-/*!40000 ALTER TABLE `chiphi` DISABLE KEYS */;
-/*!40000 ALTER TABLE `chiphi` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `khachhang`
---
-
+-- ----------------------------
+-- Table structure for khachhang
+-- ----------------------------
 DROP TABLE IF EXISTS `khachhang`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `khachhang` (
+CREATE TABLE `khachhang`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_user` int DEFAULT NULL,
-  `tenkhachhang` varchar(50) DEFAULT NULL,
-  `ngaysinh` varchar(45) DEFAULT NULL,
-  `nghenghiep` varchar(45) DEFAULT NULL,
-  `diachi` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_user` int NULL DEFAULT NULL,
+  `tenkhachhang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ngaysinh` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `nghenghiep` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `diachi` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `khachhang`
---
+-- ----------------------------
+-- Records of khachhang
+-- ----------------------------
+INSERT INTO `khachhang` VALUES (1, 1, 'H4A', 'H3A', 'HA4', 'HA1', 'HA2');
+INSERT INTO `khachhang` VALUES (2, 2, 'Huy Lê', '1643-03-06', 'SV', 'HN', 'test@gmail.com');
 
-LOCK TABLES `khachhang` WRITE;
-/*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES (1,1,'H4A','H3A','HA4','HA1','HA2'),(2,2,'Huy Lê','1643-03-06','SV','HN','test@gmail.com');
-/*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `loaingansach`
---
-
+-- ----------------------------
+-- Table structure for loaingansach
+-- ----------------------------
 DROP TABLE IF EXISTS `loaingansach`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `loaingansach` (
+CREATE TABLE `loaingansach`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `loaingansach` varchar(45) DEFAULT NULL,
-  `tenloaingansach` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `loaingansach` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `tenloaingansach` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `id_user` int NULL DEFAULT NULL,
+  `han_muc` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `loaingansach`
---
+-- ----------------------------
+-- Records of loaingansach
+-- ----------------------------
+INSERT INTO `loaingansach` VALUES (3, NULL, 'Tét123444', 2, 50);
+INSERT INTO `loaingansach` VALUES (4, NULL, 'Test', 2, 85);
 
-LOCK TABLES `loaingansach` WRITE;
-/*!40000 ALTER TABLE `loaingansach` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loaingansach` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `loaithongbao`
---
-
+-- ----------------------------
+-- Table structure for loaithongbao
+-- ----------------------------
 DROP TABLE IF EXISTS `loaithongbao`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `loaithongbao` (
+CREATE TABLE `loaithongbao`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `loaithongbao` varchar(45) DEFAULT NULL,
-  `tenloaithongbao` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `loaithongbao` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `tenloaithongbao` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `id_user` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `loaithongbao`
---
+-- ----------------------------
+-- Records of loaithongbao
+-- ----------------------------
+INSERT INTO `loaithongbao` VALUES (1, NULL, 'Đóng tiền', 2);
 
-LOCK TABLES `loaithongbao` WRITE;
-/*!40000 ALTER TABLE `loaithongbao` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loaithongbao` ENABLE KEYS */;
-UNLOCK TABLES;
+-- ----------------------------
+-- Table structure for loaivi
+-- ----------------------------
+DROP TABLE IF EXISTS `loaivi`;
+CREATE TABLE `loaivi`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NULL DEFAULT NULL,
+  `ten_vi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Table structure for table `ngansach`
---
+-- ----------------------------
+-- Records of loaivi
+-- ----------------------------
+INSERT INTO `loaivi` VALUES (1, 2, 'Ví thông dụng');
+INSERT INTO `loaivi` VALUES (2, 2, 'Ví tiết kiệm');
 
+-- ----------------------------
+-- Table structure for ngansach
+-- ----------------------------
 DROP TABLE IF EXISTS `ngansach`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ngansach` (
+CREATE TABLE `ngansach`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_ngansach` int DEFAULT NULL,
-  `id_user` int DEFAULT NULL,
-  `vonglap` varchar(45) DEFAULT NULL,
-  `ngaybatdau` varchar(45) DEFAULT NULL,
-  `id_loaingansach` int DEFAULT NULL,
-  `loaitien` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_ngansach` int NULL DEFAULT NULL,
+  `id_user` int NULL DEFAULT NULL,
+  `vonglap` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ngaytao` datetime(0) NULL DEFAULT NULL,
+  `id_loaingansach` int NULL DEFAULT NULL,
+  `loaitien` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `sotien` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `ngansach`
---
+-- ----------------------------
+-- Records of ngansach
+-- ----------------------------
+INSERT INTO `ngansach` VALUES (2, NULL, 2, '1233', '2020-12-27 00:00:00', 4, 'vnmd', '1000');
+INSERT INTO `ngansach` VALUES (3, NULL, 2, '12', '2020-12-10 17:29:00', 4, '123', '3123');
+INSERT INTO `ngansach` VALUES (4, NULL, 2, '1233', '2020-11-26 17:29:00', 4, 'vnd', '1500');
+INSERT INTO `ngansach` VALUES (5, NULL, 2, '12', '2020-10-16 21:54:49', 4, 'vnd', '120000');
+INSERT INTO `ngansach` VALUES (6, NULL, 2, '12', '2020-09-25 21:55:06', 4, 'vnd', '800');
+INSERT INTO `ngansach` VALUES (7, NULL, 2, '12', '2020-08-21 21:55:26', 4, 'vnd', '1800');
+INSERT INTO `ngansach` VALUES (8, NULL, 2, '198', '2020-07-23 21:55:45', 4, 'vnd', '2000');
+INSERT INTO `ngansach` VALUES (9, NULL, 2, '10', '2020-06-23 21:56:06', 4, 'vnd', '2500');
+INSERT INTO `ngansach` VALUES (10, NULL, 2, '45', '2020-05-20 21:56:32', 4, 'vnd', '2200');
+INSERT INTO `ngansach` VALUES (11, NULL, 2, '47', '2020-04-15 21:56:49', 4, 'vnd', '1700');
+INSERT INTO `ngansach` VALUES (12, NULL, 2, '7', '2020-03-18 21:57:06', 4, 'vnd', '1400');
+INSERT INTO `ngansach` VALUES (13, NULL, 2, '78', '2020-02-11 21:57:23', 4, 'vnd', '700');
+INSERT INTO `ngansach` VALUES (14, NULL, 2, '89', '2020-01-14 21:57:40', 4, 'vnd', '2700');
 
-LOCK TABLES `ngansach` WRITE;
-/*!40000 ALTER TABLE `ngansach` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ngansach` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `role`
---
-
+-- ----------------------------
+-- Table structure for role
+-- ----------------------------
 DROP TABLE IF EXISTS `role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `role` (
+CREATE TABLE `role`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name_role` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `name_role` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `role`
---
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+INSERT INTO `role` VALUES (1, 'ROLE_ADMIN');
 
-LOCK TABLES `role` WRITE;
-/*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'ROLE_ADMIN');
-/*!40000 ALTER TABLE `role` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `thongbao`
---
-
+-- ----------------------------
+-- Table structure for thongbao
+-- ----------------------------
 DROP TABLE IF EXISTS `thongbao`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `thongbao` (
+CREATE TABLE `thongbao`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `noidung` varchar(45) DEFAULT NULL,
-  `idloaithongbao` int DEFAULT NULL,
-  `trangthai` varchar(45) DEFAULT NULL,
-  `ngaytao` varchar(45) DEFAULT NULL,
-  `mota` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `noidung` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `idloaithongbao` int NULL DEFAULT NULL,
+  `trangthai` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ngaytao` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `mota` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `thongbao`
---
+-- ----------------------------
+-- Records of thongbao
+-- ----------------------------
 
-LOCK TABLES `thongbao` WRITE;
-/*!40000 ALTER TABLE `thongbao` DISABLE KEYS */;
-/*!40000 ALTER TABLE `thongbao` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `thongbao_user`
---
-
+-- ----------------------------
+-- Table structure for thongbao_user
+-- ----------------------------
 DROP TABLE IF EXISTS `thongbao_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `thongbao_user` (
+CREATE TABLE `thongbao_user`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_user` int DEFAULT NULL,
-  `id_thongbao` int DEFAULT NULL,
-  `trangthai` varchar(45) DEFAULT NULL,
-  `ngaytaothongbao` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_user` int NULL DEFAULT NULL,
+  `id_thongbao` int NULL DEFAULT NULL,
+  `trangthai` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ngaytaothongbao` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `thongbao_user`
---
+-- ----------------------------
+-- Records of thongbao_user
+-- ----------------------------
 
-LOCK TABLES `thongbao_user` WRITE;
-/*!40000 ALTER TABLE `thongbao_user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `thongbao_user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `thunhap`
---
-
+-- ----------------------------
+-- Table structure for thunhap
+-- ----------------------------
 DROP TABLE IF EXISTS `thunhap`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `thunhap` (
+CREATE TABLE `thunhap`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_user` int DEFAULT NULL,
-  `id_thunhap` int DEFAULT NULL,
-  `sotien` varchar(45) DEFAULT NULL,
-  `loaitien` varchar(45) DEFAULT NULL,
-  `kihan` varchar(45) DEFAULT NULL,
-  `ngaytao` varchar(45) DEFAULT NULL,
-  `mota` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_user` int NULL DEFAULT NULL,
+  `id_thunhap` int NULL DEFAULT NULL,
+  `sotien` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `loaitien` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `kihan` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ngaytao` datetime(0) NULL DEFAULT NULL,
+  `mota` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `thunhap`
---
+-- ----------------------------
+-- Records of thunhap
+-- ----------------------------
+INSERT INTO `thunhap` VALUES (2, 2, NULL, '123', 'VNĐ', '12', '2020-12-26 17:59:00', 'Test');
+INSERT INTO `thunhap` VALUES (3, 2, NULL, '123', 'test', '6 tjasmh', '2020-12-19 19:18:00', 'qưe2312');
+INSERT INTO `thunhap` VALUES (4, 2, NULL, '123', 'VND', '6 THÁNG', '2020-12-27 17:16:45', 'Test');
+INSERT INTO `thunhap` VALUES (5, 2, NULL, '123', 'VNĐ', 'VND', '2020-12-27 22:13:48', 'Mua sữa cho con 2\n');
+INSERT INTO `thunhap` VALUES (6, 2, NULL, '123', 'VNĐ', 'a', '2020-12-18 22:13:00', 'qwe');
+INSERT INTO `thunhap` VALUES (7, 2, NULL, '123', 'VNĐ', '76', '2020-12-09 22:40:00', '123');
+INSERT INTO `thunhap` VALUES (8, 2, NULL, '1555', 'VNĐ', 'â', '2020-11-20 22:55:20', '123');
+INSERT INTO `thunhap` VALUES (9, 2, NULL, '777', 'VNĐ', 'â', '2020-10-22 22:55:46', '65');
+INSERT INTO `thunhap` VALUES (10, 2, NULL, '888', 'VNĐ', 'a', '2020-09-18 23:00:40', '53');
 
-LOCK TABLES `thunhap` WRITE;
-/*!40000 ALTER TABLE `thunhap` DISABLE KEYS */;
-/*!40000 ALTER TABLE `thunhap` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `user`
---
-
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
 DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
+CREATE TABLE `user`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) DEFAULT NULL,
-  `pass` varchar(255) DEFAULT NULL,
-  `id_role` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `username` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `pass` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `id_role` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `user`
---
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, 'admin', '$2a$10$7VaF3Y2bRB50/d4DmRo21OyILut0WchH1d0elCWzGqNLD3U7Eb6wi', 1);
+INSERT INTO `user` VALUES (2, 'test', '$2a$10$OHMO6gf3wqgp.ysr2D3gH.5zYqa7IHjeiz9ezpscxfi3kpJk9Uic.', 1);
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','$2a$10$7VaF3Y2bRB50/d4DmRo21OyILut0WchH1d0elCWzGqNLD3U7Eb6wi',1),(2,'test','$2a$10$OHMO6gf3wqgp.ysr2D3gH.5zYqa7IHjeiz9ezpscxfi3kpJk9Uic.',1);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `user_role`
---
-
+-- ----------------------------
+-- Table structure for user_role
+-- ----------------------------
 DROP TABLE IF EXISTS `user_role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_role` (
+CREATE TABLE `user_role`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_user` int DEFAULT NULL,
-  `id_role` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_user` int NULL DEFAULT NULL,
+  `id_role` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
---
--- Dumping data for table `user_role`
---
+-- ----------------------------
+-- Records of user_role
+-- ----------------------------
 
-LOCK TABLES `user_role` WRITE;
-/*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+-- ----------------------------
+-- Table structure for vi
+-- ----------------------------
+DROP TABLE IF EXISTS `vi`;
+CREATE TABLE `vi`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NULL DEFAULT NULL,
+  `id_loai_vi` int NULL DEFAULT NULL,
+  `money` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `modified_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+-- ----------------------------
+-- Records of vi
+-- ----------------------------
+INSERT INTO `vi` VALUES (1, 2, 1, '874771986', 'a233', '2021-01-11 21:33:11');
+INSERT INTO `vi` VALUES (2, 2, 2, '1233333', 'asd', '2021-01-06 21:54:34');
 
--- Dump completed on 2020-12-26 23:56:15
+SET FOREIGN_KEY_CHECKS = 1;
