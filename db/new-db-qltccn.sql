@@ -11,7 +11,7 @@
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 11/01/2021 21:51:10
+ Date: 11/01/2021 21:57:55
 */
 
 SET NAMES utf8mb4;
@@ -75,7 +75,7 @@ CREATE TABLE `khachhang`  (
 -- Records of khachhang
 -- ----------------------------
 INSERT INTO `khachhang` VALUES (1, 1, 'H4A', 'H3A', 'HA4', 'HA1', 'HA2');
-INSERT INTO `khachhang` VALUES (2, 2, 'Huy Lê', '1643-03-06', 'SV', 'HN', 'test@gmail.com');
+INSERT INTO `khachhang` VALUES (2, 2, 'Huy Lê', '1643-03-06', 'SV', 'HN1', 'test@gmail.com');
 
 -- ----------------------------
 -- Table structure for loaingansach
@@ -176,7 +176,7 @@ CREATE TABLE `role`  (
 -- ----------------------------
 -- Records of role
 -- ----------------------------
-INSERT INTO `role` VALUES (1, 'ROLE_ADMIN');
+INSERT INTO `role` VALUES (1, 'ROLE_GUEST');
 
 -- ----------------------------
 -- Table structure for thongbao
