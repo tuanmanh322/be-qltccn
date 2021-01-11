@@ -60,12 +60,11 @@ public class ChiPhiController {
     }
 
 
-    @GetMapping("/show/{month}/{year}/{idlns}")
+    @GetMapping("/show/{month}/{year}")
     public ResponseEntity<List<Integer>> getAllByIdLNS(
             @PathVariable("month") int month,
-            @PathVariable("year") int year,
-            @PathVariable("idlns") int idlns){
-        return new ResponseEntity<>(chiPhiService.getListByIDlns(month,year,idlns), HttpStatus.OK);
+            @PathVariable("year") int year){
+        return new ResponseEntity<>(chiPhiService.getListByIDlns(month,year), HttpStatus.OK);
     }
 
     @GetMapping("/check-day")

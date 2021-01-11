@@ -1,6 +1,7 @@
 package com.datn.qltccn.service.impl;
 
 import com.datn.qltccn.dao.NganSachDAO;
+import com.datn.qltccn.dto.NganSachDTO;
 import com.datn.qltccn.dto.NganSachSearchDTO;
 import com.datn.qltccn.model.Ngansach;
 import com.datn.qltccn.repository.NgansachRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,5 +99,24 @@ public class NganSachServiceImpl implements NganSachService {
             }
         }
         return total;
+    }
+
+    @Override
+    public List<Integer> getAllShow(int month, int year) {
+        List<Integer> data = new ArrayList<>();
+        Integer idUser = SecurityUtils.getCurrentUserIdLogin();
+        YearMonth yearMonthObject = YearMonth.of(year, month);
+        int daysInMonth = yearMonthObject.lengthOfMonth();
+        for (int i = 1; i <= daysInMonth; i++) {
+            int total = 0;
+            List<NganSachDTO> nganSachDTOS = nganSachDAO.getAllByMonthAndYearAndIdLoaiNS(i, month, year, idUser);
+            if (!nganSachDTOS.isEmpty()) {
+                for (NganSachDTO ns : nganSachDTOS) {
+                    total+= Integer.parseInt(ns.getSotien());
+                }
+            }
+            data.add(total);
+        }
+        return data;
     }
 }

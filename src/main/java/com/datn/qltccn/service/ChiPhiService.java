@@ -10,7 +10,7 @@ public interface ChiPhiService extends BaseService<Chiphi> {
 
     List<Integer> getListByMonth(int month);
 
-    List<Integer> getListByIDlns(int month, int year, Integer idLoaiNS);
+    List<Integer> getListByIDlns(int month, int year);
 
     boolean listByMonthAndDay();
 }

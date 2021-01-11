@@ -68,4 +68,12 @@ public class NganSachController {
     public ResponseEntity<Integer> getAllByLNS(@PathVariable("lns") int idLNS){
         return new ResponseEntity<>(nganSachService.getAllByIDLNS(idLNS), HttpStatus.OK);
     }
+
+
+    @GetMapping("/show/{month}/{year}")
+    public ResponseEntity<List<Integer>> getShow(
+            @PathVariable("month") int month,
+            @PathVariable("year") int year){
+        return new ResponseEntity<>(nganSachService.getAllShow(month,year), HttpStatus.OK);
+    }
 }

@@ -68,7 +68,7 @@ public class ChiPhiDAOImp extends AbstractDAO implements ChiPhiDAO {
     }
 
     @Override
-    public List<ChiPhiDTO> getAllByMonthAndYearAndIdLoaiNS(int days,int month, int year, Integer idUser, int idLoaiNS) {
+    public List<ChiPhiDTO> getAllByMonthAndYearAndIdLoaiNS(int days,int month, int year, Integer idUser) {
         StringBuilder sb = new StringBuilder();
         Map<String, Object> pa = new HashMap<>();
         sb.append(" select distinct u.username ,");
@@ -92,10 +92,6 @@ public class ChiPhiDAOImp extends AbstractDAO implements ChiPhiDAO {
         pa.put("p_year",year);
         sb.append(" and DAY(cp.ngaytao) =:p_day");
         pa.put("p_day",days);
-        if (idLoaiNS > 0){
-            sb.append(" and cp.id_loaingansach =:p_lns");
-            pa.put("p_lns",idLoaiNS);
-        }
         return namedParameterJdbcTemplate().query(sb.toString(),pa, BeanPropertyRowMapper.newInstance(ChiPhiDTO.class));
     }
 

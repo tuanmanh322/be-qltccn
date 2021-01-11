@@ -5,9 +5,11 @@ import com.datn.qltccn.dto.NganSachDTO;
 import com.datn.qltccn.dto.NganSachSearchDTO;
 import com.datn.qltccn.dto.ThuNhapDTO;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -63,5 +65,27 @@ public class NganSachDAOImpl  extends AbstractDAO implements NganSachDAO {
             sb.append(" order by ns.ngaytao ");
         }
         searchAndCountTotal(dto, sb.toString(), pa, NganSachDTO.class);
+    }
+
+    @Override
+    public List<NganSachDTO> getAllByMonthAndYearAndIdLoaiNS(int day, int month, int year, Integer idUser) {
+        StringBuilder sb = new StringBuilder();
+        Map<String, Object> pa = new HashMap<>();
+        sb.append(" select distinct u.username ,");
+        sb.append(" cp.id, ");
+        sb.append(" cp.loaitien,");
+        sb.append(" cp.ngaytao,");
+        sb.append(" cp.sotien");
+        sb.append(" from ngansach as cp left join user as u on u.id = cp.id_user ");
+        sb.append(" where 1 = 1 ");
+        sb.append(" and u.id =:p_id ");
+        pa.put("p_id",idUser);
+        sb.append(" and MONTH(cp.ngaytao) =:p_month");
+        pa.put("p_month",month);
+        sb.append(" and DAY(cp.ngaytao) =:p_day");
+        pa.put("p_day",day);
+        sb.append(" and YEAR(cp.ngaytao) =:p_dyay");
+        pa.put("p_dyay",year);
+        return namedParameterJdbcTemplate().query(sb.toString(),pa, BeanPropertyRowMapper.newInstance(NganSachDTO.class));
     }
 }

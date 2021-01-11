@@ -89,14 +89,14 @@ public class ChiPhiServiceImpl implements ChiPhiService {
     }
 
     @Override
-    public List<Integer> getListByIDlns(int month, int year, Integer idLoaiNS) {
+    public List<Integer> getListByIDlns(int month, int year) {
         List<Integer> data = new ArrayList<>();
         Integer idUser =  SecurityUtils.getCurrentUserIdLogin();
         YearMonth yearMonthObject = YearMonth.of(year, month);
         int daysInMonth = yearMonthObject.lengthOfMonth();
         for (int i = 1; i<=daysInMonth; i++){
             int total = 0;
-            List<ChiPhiDTO> chiphis=   chiPhiDAO.getAllByMonthAndYearAndIdLoaiNS(i,month, year ,idUser,idLoaiNS);
+            List<ChiPhiDTO> chiphis=   chiPhiDAO.getAllByMonthAndYearAndIdLoaiNS(i,month, year ,idUser);
             if (!chiphis.isEmpty()){
                 for (ChiPhiDTO cp: chiphis){
                     total = total + Integer.parseInt(cp.getSotien());
