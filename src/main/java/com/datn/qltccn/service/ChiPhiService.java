@@ -12,4 +12,5 @@ public interface ChiPhiService extends BaseService<Chiphi> {
 
     List<Integer> getListByIDlns(int month, int year, Integer idLoaiNS);
 
+    boolean listByMonthAndDay();
 }

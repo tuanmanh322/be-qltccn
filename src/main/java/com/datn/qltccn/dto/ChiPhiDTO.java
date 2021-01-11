@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -25,4 +26,7 @@ public class ChiPhiDTO {
     private String tenkhachhang;
 
     private Integer idLoaiNganSach;
+
+    private Date modifiedDate;
+
 }

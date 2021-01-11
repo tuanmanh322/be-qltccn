@@ -25,7 +25,7 @@ public class Ngansach implements Serializable {
     private Integer idUser;
 
     @Column(name = "id_loaingansach")
-    private String idLoaiNganSach;
+    private Integer idLoaiNganSach;
 
     @Column(name = "loaitien")
     private String loaitien;

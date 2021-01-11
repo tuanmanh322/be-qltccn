@@ -82,6 +82,7 @@ public class LoaiNganSachServiceImpl implements LoaiNganSachService {
     public void edit(Loaingansach loaingansach) {
         Loaingansach lns = loaingansachRepository.getOne(loaingansach.getId());
         lns.setTenloaingansach(loaingansach.getTenloaingansach());
+        lns.setHanMuc(loaingansach.getHanMuc());
         loaingansachRepository.save(lns);
     }
 }

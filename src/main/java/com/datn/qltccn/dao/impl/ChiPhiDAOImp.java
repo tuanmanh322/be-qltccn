@@ -98,4 +98,27 @@ public class ChiPhiDAOImp extends AbstractDAO implements ChiPhiDAO {
         }
         return namedParameterJdbcTemplate().query(sb.toString(),pa, BeanPropertyRowMapper.newInstance(ChiPhiDTO.class));
     }
+
+    @Override
+    public List<ChiPhiDTO> getAllByMonthAndDaysIDuser(int days, int month,  int year,Integer idUser) {
+        StringBuilder sb = new StringBuilder();
+        Map<String, Object> pa = new HashMap<>();
+        sb.append(" select distinct u.username ,");
+        sb.append(" cp.id, ");
+        sb.append(" cp.loaitien,");
+        sb.append(" cp.ngaytao,");
+        sb.append(" cp.mota,");
+        sb.append(" cp.sotien");
+        sb.append(" from chiphi as cp left join user as u on u.id = cp.id_user ");
+        sb.append(" where 1 = 1 ");
+        sb.append(" and u.id =:p_id ");
+        pa.put("p_id",idUser);
+        sb.append(" and MONTH(cp.modified_date) =:p_month");
+        pa.put("p_month",month);
+        sb.append(" and DAY(cp.modified_date) =:p_day");
+        pa.put("p_day",days);
+        sb.append(" and YEAR(cp.modified_date) =:p_dyay");
+        pa.put("p_dyay",year);
+        return namedParameterJdbcTemplate().query(sb.toString(),pa, BeanPropertyRowMapper.newInstance(ChiPhiDTO.class));
+    }
 }

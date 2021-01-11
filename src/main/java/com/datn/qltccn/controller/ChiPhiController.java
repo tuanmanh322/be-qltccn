@@ -68,4 +68,8 @@ public class ChiPhiController {
         return new ResponseEntity<>(chiPhiService.getListByIDlns(month,year,idlns), HttpStatus.OK);
     }
 
+    @GetMapping("/check-day")
+    public ResponseEntity<Boolean> checkUpdateInDay(){
+        return new ResponseEntity<>(chiPhiService.listByMonthAndDay(), HttpStatus.OK);
+    }
 }

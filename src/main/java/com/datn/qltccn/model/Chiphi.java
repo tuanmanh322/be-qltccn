@@ -36,5 +36,7 @@ public class Chiphi implements Serializable {
     @Column(name = "sotien")
     private String sotien;
 
-    
+    @Column(name = "modified_date")
+    private Date modifiedDate;
+
 }

@@ -34,6 +34,7 @@ public class ChiPhiServiceImpl implements ChiPhiService {
 
     @Override
     public void add(Chiphi chiphi) {
+        chiphi.setModifiedDate(new Date());
         chiphiRepository.save(chiphi);
     }
 
@@ -104,5 +105,17 @@ public class ChiPhiServiceImpl implements ChiPhiService {
             data.add(total);
         }
         return data;
+    }
+
+    @Override
+    public boolean listByMonthAndDay() {
+        Date d =new Date();
+        Calendar cl = Calendar.getInstance();
+        cl.setTime(d);
+        int month = cl.get(Calendar.MONTH);
+        int day = cl.get(Calendar.DATE);
+        int year =cl.get(Calendar.YEAR);
+        List<ChiPhiDTO> chiPhiDTOS = chiPhiDAO.getAllByMonthAndDaysIDuser(day,month + 1,year, SecurityUtils.getCurrentUserIdLogin());
+        return !chiPhiDTOS.isEmpty();
     }
 }
