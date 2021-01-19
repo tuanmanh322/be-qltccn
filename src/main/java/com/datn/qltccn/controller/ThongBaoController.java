@@ -45,4 +45,10 @@ public class ThongBaoController {
         thongBaoService.delete(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/update")
+    public ResponseEntity<Void> update(){
+        thongBaoService.update();
+        return new ResponseEntity<>( HttpStatus.OK);
+    }
 }

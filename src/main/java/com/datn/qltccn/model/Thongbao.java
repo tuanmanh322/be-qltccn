@@ -20,6 +20,10 @@ public class Thongbao implements Serializable {
     @Column(name = "idloaithongbao")
     private Integer idloaithongbao;
 
+    @Column(name = "id_user")
+    private Integer idUser;
+
+
     @Column(name = "mota")
     private String mota;
 
@@ -30,7 +34,7 @@ public class Thongbao implements Serializable {
     private String noidung;
 
     @Column(name = "trangthai")
-    private String trangthai;
+    private boolean trangthai;
 
     
 }

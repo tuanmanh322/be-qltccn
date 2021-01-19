@@ -2,11 +2,13 @@ package com.datn.qltccn.service.impl;
 
 import com.datn.qltccn.model.Thongbao;
 import com.datn.qltccn.repository.ThongbaoRepository;
+import com.datn.qltccn.security.SecurityUtils;
 import com.datn.qltccn.service.ThongBaoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -23,6 +25,9 @@ public class ThongBaoServiceImpl implements ThongBaoService {
 
     @Override
     public void add(Thongbao thongbao) {
+        thongbao.setTrangthai(false);
+        thongbao.setNgaytao(LocalDateTime.now());
+        thongbao.setIdUser(SecurityUtils.getCurrentUserIdLogin());
         thongbaoRepository.save(thongbao);
     }
 
@@ -33,7 +38,7 @@ public class ThongBaoServiceImpl implements ThongBaoService {
 
     @Override
     public List<Thongbao> getAll() {
-        return thongbaoRepository.findAll();
+        return thongbaoRepository.findAllByIdUser(SecurityUtils.getCurrentUserIdLogin());
     }
 
     @Override
@@ -48,7 +53,16 @@ public class ThongBaoServiceImpl implements ThongBaoService {
         tb.setMota(thongbao.getMota());
         tb.setNgaytao(thongbao.getNgaytao());
         tb.setNoidung(thongbao.getNoidung());
-        tb.setTrangthai(thongbao.getTrangthai());
+        tb.setTrangthai(thongbao.isTrangthai());
         thongbaoRepository.save(tb);
+    }
+
+    @Override
+    public void update() {
+        List<Thongbao> thongbaos = getAll();
+        for (Thongbao t: thongbaos){
+            t.setTrangthai(true);
+            thongbaoRepository.save(t);
+        }
     }
 }
